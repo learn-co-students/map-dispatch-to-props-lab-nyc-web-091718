@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { addRestaurant } from '../actions/restaurants';
 import { connect } from 'react-redux';
+//import {store} from "../index"
 
 export class RestaurantInput extends Component {
 
@@ -17,13 +18,18 @@ export class RestaurantInput extends Component {
 
   handleOnLocationChange = event => {
     this.setState({
-      [event.target.id]: event.target.value
+      location: event.target.value
     });
   }
 
   handleOnSubmit = event => {
     event.preventDefault();
     // add missing code
+    this.props.addRestaurant(this.state)
+    // console.log(store)
+    // console.log(store.getState())
+    // const s = store
+    // debugger
   }
 
   render() {
@@ -49,6 +55,5 @@ export class RestaurantInput extends Component {
   }
 };
 
-
 //connect this component by wrapping RestaurantInput below
-export default RestaurantInput
+export default connect(()=>{return{}}, {addRestaurant})(RestaurantInput)
